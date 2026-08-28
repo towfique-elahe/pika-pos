@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<ruleset name="Pika POS">
+	<description>WordPress Coding Standards for Pika POS.</description>
+
+	<file>.</file>
+
+	<exclude-pattern>/vendor/</exclude-pattern>
+	<exclude-pattern>/node_modules/</exclude-pattern>
+	<exclude-pattern>/build/</exclude-pattern>
+	<exclude-pattern>/tests/e2e/</exclude-pattern>
+
+	<arg name="extensions" value="php"/>
+	<arg name="basepath" value="."/>
+	<arg name="colors"/>
+	<arg name="parallel" value="8"/>
+	<arg value="sp"/>
+
+	<!-- The runtime this plugin targets. -->
+	<config name="minimum_wp_version" value="6.6"/>
+	<config name="testVersion" value="8.0-"/>
+
+	<rule ref="WordPress">
+		<!--
+			Class files are named for the module, not the full class: class-orders.php
+			would hold Pika_POS_Orders. This matches the author's other plugins and
+			keeps includes/ readable; the prefix is already in the class name.
+		-->
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+		<!-- wp-scripts owns the JS/CSS build; PHPCS should not police file names there. -->
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+	</rule>
+
+	<rule ref="PHPCompatibilityWP"/>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="pika-pos"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="pika_pos"/>
+				<element value="PIKA_POS"/>
+				<element value="Pika_POS"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!--
+		Test files follow the same style rules but not the same documentation
+		rules: a well-named test documents itself. The bootstrap writes failures to
+		STDERR before WordPress loads, so WP_Filesystem is not available to it.
+	-->
+	<rule ref="Squiz.Commenting.FunctionComment.Missing">
+		<exclude-pattern>/tests/</exclude-pattern>
+	</rule>
+	<rule ref="Squiz.Commenting.ClassComment.Missing">
+		<exclude-pattern>/tests/</exclude-pattern>
+	</rule>
+	<rule ref="Generic.Commenting.DocComment.MissingShort">
+		<exclude-pattern>/tests/</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.WP.AlternativeFunctions.file_system_operations_fwrite">
+		<exclude-pattern>/tests/php/bootstrap.php</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.DB.DirectDatabaseQuery">
+		<!-- Tests clean up their own rows; there is nothing to cache. -->
+		<exclude-pattern>/tests/</exclude-pattern>
+	</rule>
+</ruleset>

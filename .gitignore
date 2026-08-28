@@ -1,0 +1,24 @@
+# Dependencies
+/node_modules/
+/vendor/
+
+# Build output
+/build/
+*.map
+
+# Tooling caches
+.phpunit.result.cache
+.phpcs-cache
+/tests/e2e/.playwright/
+/tests/e2e/test-results/
+/tests/e2e/playwright-report/
+
+# Local environment
+.env
+.env.local
+.DS_Store
+*.log
+
+# Release artefacts
+/dist/
+/pika-pos.zip

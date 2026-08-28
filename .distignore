@@ -1,0 +1,82 @@
+# Files excluded from the distribution zip.
+#
+# Used by `wp dist-archive` and by the 10up WordPress plugin deploy action.
+# Anything not listed here ships to users, so build/ must exist before packaging:
+#
+#     npm ci && npm run build && wp dist-archive . --create-target-dir
+#
+# Syntax is gitignore-like, but simpler — no negation (`!`) support. Keep paths
+# anchored with a leading slash where you mean "only at the plugin root".
+
+# Version control
+/.git
+/.github
+/.gitignore
+/.gitattributes
+/.distignore
+
+# AI assistant configuration
+/.claude
+/CLAUDE.md
+/.mcp.json
+
+# Editor and OS noise
+/.editorconfig
+/.vscode
+/.idea
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Dependency manifests and installed trees.
+# Every Composer dependency here is require-dev, so vendor/ has nothing a user
+# needs. If a runtime dependency is ever added, run `composer install --no-dev`
+# and drop the /vendor line below.
+/node_modules
+/vendor
+/composer.json
+/composer.lock
+/package.json
+/package-lock.json
+
+# Build source and configuration. Users get build/, not what produced it.
+/src
+/webpack.config.js
+/.babelrc
+/.nvmrc
+/.eslintrc
+/.eslintrc.js
+/.eslintignore
+/.stylelintrc
+/.stylelintrc.js
+/.prettierrc
+/.prettierrc.js
+
+# Quality tooling
+/phpcs.xml
+/phpcs.xml.dist
+/phpstan.neon
+/phpstan.neon.dist
+/phpunit.xml
+/phpunit.xml.dist
+/bin
+/tests
+/.phpunit.cache
+/.phpunit.result.cache
+/.phpcs-cache
+
+# Project documentation that is not the WordPress.org readme
+/README.md
+/CHANGELOG.md
+/CONTRIBUTING.md
+
+# Local environment and logs
+/.env
+/.env.local
+*.log
+*.map
+
+# Release artefacts
+/dist
+/*.zip

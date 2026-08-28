@@ -1,0 +1,72 @@
+{
+	"$schema": "https://json.schemastore.org/claude-code-settings.json",
+	"permissions": {
+		"allow": [
+			"Bash(studio status)",
+			"Bash(studio start:*)",
+			"Bash(studio wp plugin list:*)",
+			"Bash(studio wp plugin activate pika-pos)",
+			"Bash(studio wp plugin deactivate pika-pos)",
+			"Bash(studio wp rewrite flush)",
+			"Bash(studio wp option get:*)",
+			"Bash(studio wp eval-file:*)",
+			"Bash(studio wp wc:*)",
+			"Bash(npm run:*)",
+			"Bash(npm ci)",
+			"Bash(npm install)",
+			"Bash(npx wp-scripts:*)",
+			"Bash(composer install)",
+			"Bash(composer dump-autoload)",
+			"Bash(composer run:*)",
+			"Bash(vendor/bin/phpcs:*)",
+			"Bash(vendor/bin/phpcbf:*)",
+			"Bash(vendor/bin/phpunit:*)",
+			"Bash(php -l:*)",
+			"Bash(git status:*)",
+			"Bash(git diff:*)",
+			"Bash(git log:*)",
+			"Bash(git add:*)",
+			"Bash(rg:*)",
+			"Bash(find:*)",
+			"mcp__context7__resolve-library-id",
+			"mcp__context7__get-library-docs",
+			"mcp__site-db__list_tables",
+			"mcp__site-db__describe_table",
+			"mcp__site-db__read_query",
+			"Bash(studio wp eval:*)"
+		],
+		"deny": [
+			"Edit(./build/**)",
+			"Write(./build/**)",
+			"Edit(../woocommerce/**)",
+			"Write(../woocommerce/**)",
+			"Edit(../../../wp-includes/**)",
+			"Edit(../../../wp-admin/**)",
+			"Read(./.env)",
+			"Read(./.env.local)",
+			"Bash(studio wp db drop:*)",
+			"Bash(studio wp db reset:*)",
+			"Bash(studio wp site empty:*)",
+			"Bash(studio wp post delete:*)",
+			"Bash(rm -rf /:*)"
+		]
+	},
+	"hooks": {
+		"PostToolUse": [
+			{
+				"matcher": "Edit|Write|MultiEdit",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PROJECT_DIR\"/bin/hook-lint.sh",
+						"timeout": 30
+					}
+				]
+			}
+		]
+	},
+	"env": {
+		"PIKA_POS_SITE_ROOT": "/Users/towfiqueelahe/Studio/icby-polki",
+		"PIKA_POS_SITE_URL": "http://localhost:8883"
+	}
+}

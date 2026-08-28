@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json.schemastore.org/mcp.json",
+  "mcpServers": {
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest", "--browser=chromium", "--viewport-size=1440,900"],
+      "env": {}
+    },
+    "site-db": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-server-sqlite-npx",
+        "/Users/towfiqueelahe/Studio/icby-polki/wp-content/database/.ht.sqlite"
+      ],
+      "env": {}
+    },
+    "context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"],
+      "env": {}
+    },
+    "filesystem": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/towfiqueelahe/Studio/icby-polki/wp-content/plugins/pika-pos",
+        "/Users/towfiqueelahe/Studio/icby-polki/wp-content/plugins/woocommerce"
+      ],
+      "env": {}
+    }
+  }
+}

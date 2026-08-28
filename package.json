@@ -1,0 +1,31 @@
+{
+	"name": "pika-pos",
+	"version": "0.1.0",
+	"description": "Point of Sale for WooCommerce.",
+	"author": "Towfique Elahe",
+	"license": "GPL-2.0-or-later",
+	"private": true,
+	"scripts": {
+		"build": "wp-scripts build",
+		"start": "wp-scripts start",
+		"lint:js": "wp-scripts lint-js src",
+		"lint:css": "wp-scripts lint-style \"src/**/*.{css,scss}\" --allow-empty-input",
+		"lint:php": "composer run lint",
+		"lint": "npm run lint:js && npm run lint:css && npm run lint:php",
+		"format": "wp-scripts format src",
+		"test:e2e": "playwright test --config=tests/e2e/playwright.config.js",
+		"test:e2e:ui": "playwright test --config=tests/e2e/playwright.config.js --ui",
+		"packages-update": "wp-scripts packages-update"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.62.1",
+		"@wordpress/api-fetch": "^7.54.0",
+		"@wordpress/element": "^8.6.0",
+		"@wordpress/i18n": "^6.27.0",
+		"@wordpress/scripts": "^34.2.0",
+		"@wordpress/url": "^4.54.0"
+	},
+	"engines": {
+		"node": ">=20"
+	}
+}
